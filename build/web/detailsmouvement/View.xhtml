@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDetailsmouvementTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDetailsmouvementLabel_idDm}"/>
+                    <h:outputText value="#{detailsmouvementController.selected.idDm}" title="#{bundle.ViewDetailsmouvementTitle_idDm}"/>
+                    <h:outputText value="#{bundle.ViewDetailsmouvementLabel_idart}"/>
+                    <h:outputText value="#{detailsmouvementController.selected.idart}" title="#{bundle.ViewDetailsmouvementTitle_idart}"/>
+                    <h:outputText value="#{bundle.ViewDetailsmouvementLabel_idm}"/>
+                    <h:outputText value="#{detailsmouvementController.selected.idm}" title="#{bundle.ViewDetailsmouvementTitle_idm}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{detailsmouvementController.destroyAndView}" value="#{bundle.ViewDetailsmouvementDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDetailsmouvementEditLink}"/>
+                <br />
+                <h:commandLink action="#{detailsmouvementController.prepareCreate}" value="#{bundle.ViewDetailsmouvementCreateLink}" />
+                <br />
+                <h:commandLink action="#{detailsmouvementController.prepareList}" value="#{bundle.ViewDetailsmouvementShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDetailsmouvementIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

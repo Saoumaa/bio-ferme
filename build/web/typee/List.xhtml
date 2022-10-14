@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTypeeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTypeeEmpty}" rendered="#{typeeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{typeeController.items.rowCount > 0}">
+                    <h:outputText value="#{typeeController.pagination.pageFirstItem + 1}..#{typeeController.pagination.pageLastItem + 1}/#{typeeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{typeeController.previous}" value="#{bundle.Previous} #{typeeController.pagination.pageSize}" rendered="#{typeeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{typeeController.next}" value="#{bundle.Next} #{typeeController.pagination.pageSize}" rendered="#{typeeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{typeeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTypeeTitle_idtype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtype}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTypeeTitle_libelletype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.libelletype}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{typeeController.prepareView}" value="#{bundle.ListTypeeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{typeeController.prepareEdit}" value="#{bundle.ListTypeeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{typeeController.destroy}" value="#{bundle.ListTypeeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{typeeController.prepareCreate}" value="#{bundle.ListTypeeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTypeeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

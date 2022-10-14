@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetailsventeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetailsventeEmpty}" rendered="#{detailsventeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detailsventeController.items.rowCount > 0}">
+                    <h:outputText value="#{detailsventeController.pagination.pageFirstItem + 1}..#{detailsventeController.pagination.pageLastItem + 1}/#{detailsventeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detailsventeController.previous}" value="#{bundle.Previous} #{detailsventeController.pagination.pageSize}" rendered="#{detailsventeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detailsventeController.next}" value="#{bundle.Next} #{detailsventeController.pagination.pageSize}" rendered="#{detailsventeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detailsventeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailsventeTitle_iddv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iddv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailsventeTitle_qtedv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.qtedv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailsventeTitle_idv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detailsventeController.prepareView}" value="#{bundle.ListDetailsventeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detailsventeController.prepareEdit}" value="#{bundle.ListDetailsventeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detailsventeController.destroy}" value="#{bundle.ListDetailsventeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detailsventeController.prepareCreate}" value="#{bundle.ListDetailsventeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDetailsventeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

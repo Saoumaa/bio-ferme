@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetailsventeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetailsventeLabel_iddv}" for="iddv" />
+                    <h:inputText id="iddv" value="#{detailsventeController.selected.iddv}" title="#{bundle.EditDetailsventeTitle_iddv}" required="true" requiredMessage="#{bundle.EditDetailsventeRequiredMessage_iddv}"/>
+                    <h:outputLabel value="#{bundle.EditDetailsventeLabel_qtedv}" for="qtedv" />
+                    <h:inputText id="qtedv" value="#{detailsventeController.selected.qtedv}" title="#{bundle.EditDetailsventeTitle_qtedv}" />
+                    <h:outputLabel value="#{bundle.EditDetailsventeLabel_idv}" for="idv" />
+                    <h:selectOneMenu id="idv" value="#{detailsventeController.selected.idv}" title="#{bundle.EditDetailsventeTitle_idv}" >
+                        <f:selectItems value="#{venteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detailsventeController.update}" value="#{bundle.EditDetailsventeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetailsventeViewLink}"/>
+                <br />
+                <h:commandLink action="#{detailsventeController.prepareList}" value="#{bundle.EditDetailsventeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDetailsventeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

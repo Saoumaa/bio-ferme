@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePartenaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_idp}" for="idp" />
+                    <h:inputText id="idp" value="#{partenaireController.selected.idp}" title="#{bundle.CreatePartenaireTitle_idp}" required="true" requiredMessage="#{bundle.CreatePartenaireRequiredMessage_idp}"/>
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_nom}" for="nom" />
+                    <h:inputText id="nom" value="#{partenaireController.selected.nom}" title="#{bundle.CreatePartenaireTitle_nom}" />
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_prenom}" for="prenom" />
+                    <h:inputText id="prenom" value="#{partenaireController.selected.prenom}" title="#{bundle.CreatePartenaireTitle_prenom}" />
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_telephone}" for="telephone" />
+                    <h:inputText id="telephone" value="#{partenaireController.selected.telephone}" title="#{bundle.CreatePartenaireTitle_telephone}" />
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{partenaireController.selected.email}" title="#{bundle.CreatePartenaireTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_datenai}" for="datenai" />
+                    <h:inputText id="datenai" value="#{partenaireController.selected.datenai}" title="#{bundle.CreatePartenaireTitle_datenai}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_pass}" for="pass" />
+                    <h:inputText id="pass" value="#{partenaireController.selected.pass}" title="#{bundle.CreatePartenaireTitle_pass}" />
+                    <h:outputLabel value="#{bundle.CreatePartenaireLabel_idtp}" for="idtp" />
+                    <h:selectOneMenu id="idtp" value="#{partenaireController.selected.idtp}" title="#{bundle.CreatePartenaireTitle_idtp}" >
+                        <f:selectItems value="#{typepartenaireController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{partenaireController.create}" value="#{bundle.CreatePartenaireSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{partenaireController.prepareList}" value="#{bundle.CreatePartenaireShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePartenaireIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

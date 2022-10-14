@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPartenaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_idp}"/>
+                    <h:outputText value="#{partenaireController.selected.idp}" title="#{bundle.ViewPartenaireTitle_idp}"/>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_nom}"/>
+                    <h:outputText value="#{partenaireController.selected.nom}" title="#{bundle.ViewPartenaireTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_prenom}"/>
+                    <h:outputText value="#{partenaireController.selected.prenom}" title="#{bundle.ViewPartenaireTitle_prenom}"/>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_telephone}"/>
+                    <h:outputText value="#{partenaireController.selected.telephone}" title="#{bundle.ViewPartenaireTitle_telephone}"/>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_email}"/>
+                    <h:outputText value="#{partenaireController.selected.email}" title="#{bundle.ViewPartenaireTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_datenai}"/>
+                    <h:outputText value="#{partenaireController.selected.datenai}" title="#{bundle.ViewPartenaireTitle_datenai}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_pass}"/>
+                    <h:outputText value="#{partenaireController.selected.pass}" title="#{bundle.ViewPartenaireTitle_pass}"/>
+                    <h:outputText value="#{bundle.ViewPartenaireLabel_idtp}"/>
+                    <h:outputText value="#{partenaireController.selected.idtp}" title="#{bundle.ViewPartenaireTitle_idtp}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{partenaireController.destroyAndView}" value="#{bundle.ViewPartenaireDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPartenaireEditLink}"/>
+                <br />
+                <h:commandLink action="#{partenaireController.prepareCreate}" value="#{bundle.ViewPartenaireCreateLink}" />
+                <br />
+                <h:commandLink action="#{partenaireController.prepareList}" value="#{bundle.ViewPartenaireShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPartenaireIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetailsmiseventeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetailsmiseventeEmpty}" rendered="#{detailsmiseventeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detailsmiseventeController.items.rowCount > 0}">
+                    <h:outputText value="#{detailsmiseventeController.pagination.pageFirstItem + 1}..#{detailsmiseventeController.pagination.pageLastItem + 1}/#{detailsmiseventeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detailsmiseventeController.previous}" value="#{bundle.Previous} #{detailsmiseventeController.pagination.pageSize}" rendered="#{detailsmiseventeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detailsmiseventeController.next}" value="#{bundle.Next} #{detailsmiseventeController.pagination.pageSize}" rendered="#{detailsmiseventeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detailsmiseventeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailsmiseventeTitle_iddmv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iddmv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailsmiseventeTitle_qtmv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.qtmv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailsmiseventeTitle_idart}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idart}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detailsmiseventeController.prepareView}" value="#{bundle.ListDetailsmiseventeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detailsmiseventeController.prepareEdit}" value="#{bundle.ListDetailsmiseventeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detailsmiseventeController.destroy}" value="#{bundle.ListDetailsmiseventeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detailsmiseventeController.prepareCreate}" value="#{bundle.ListDetailsmiseventeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDetailsmiseventeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetailslivraisonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetailslivraisonLabel_iddl}" for="iddl" />
+                    <h:inputText id="iddl" value="#{detailslivraisonController.selected.iddl}" title="#{bundle.EditDetailslivraisonTitle_iddl}" required="true" requiredMessage="#{bundle.EditDetailslivraisonRequiredMessage_iddl}"/>
+                    <h:outputLabel value="#{bundle.EditDetailslivraisonLabel_iddv}" for="iddv" />
+                    <h:selectOneMenu id="iddv" value="#{detailslivraisonController.selected.iddv}" title="#{bundle.EditDetailslivraisonTitle_iddv}" >
+                        <f:selectItems value="#{detailsventeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetailslivraisonLabel_idl}" for="idl" />
+                    <h:selectOneMenu id="idl" value="#{detailslivraisonController.selected.idl}" title="#{bundle.EditDetailslivraisonTitle_idl}" >
+                        <f:selectItems value="#{livraisonController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detailslivraisonController.update}" value="#{bundle.EditDetailslivraisonSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetailslivraisonViewLink}"/>
+                <br />
+                <h:commandLink action="#{detailslivraisonController.prepareList}" value="#{bundle.EditDetailslivraisonShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDetailslivraisonIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

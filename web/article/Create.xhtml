@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateArticleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_idart}" for="idart" />
+                    <h:inputText id="idart" value="#{articleController.selected.idart}" title="#{bundle.CreateArticleTitle_idart}" required="true" requiredMessage="#{bundle.CreateArticleRequiredMessage_idart}"/>
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_libellear}" for="libellear" />
+                    <h:inputText id="libellear" value="#{articleController.selected.libellear}" title="#{bundle.CreateArticleTitle_libellear}" />
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_sexe}" for="sexe" />
+                    <h:inputText id="sexe" value="#{articleController.selected.sexe}" title="#{bundle.CreateArticleTitle_sexe}" />
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_age}" for="age" />
+                    <h:inputText id="age" value="#{articleController.selected.age}" title="#{bundle.CreateArticleTitle_age}" />
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_poids}" for="poids" />
+                    <h:inputText id="poids" value="#{articleController.selected.poids}" title="#{bundle.CreateArticleTitle_poids}" />
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_idcat}" for="idcat" />
+                    <h:selectOneMenu id="idcat" value="#{articleController.selected.idcat}" title="#{bundle.CreateArticleTitle_idcat}" >
+                        <f:selectItems value="#{categorieController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateArticleLabel_idtype}" for="idtype" />
+                    <h:selectOneMenu id="idtype" value="#{articleController.selected.idtype}" title="#{bundle.CreateArticleTitle_idtype}" >
+                        <f:selectItems value="#{typeeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{articleController.create}" value="#{bundle.CreateArticleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{articleController.prepareList}" value="#{bundle.CreateArticleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateArticleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

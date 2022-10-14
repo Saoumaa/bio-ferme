@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPartenaireTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPartenaireEmpty}" rendered="#{partenaireController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{partenaireController.items.rowCount > 0}">
+                    <h:outputText value="#{partenaireController.pagination.pageFirstItem + 1}..#{partenaireController.pagination.pageLastItem + 1}/#{partenaireController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{partenaireController.previous}" value="#{bundle.Previous} #{partenaireController.pagination.pageSize}" rendered="#{partenaireController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{partenaireController.next}" value="#{bundle.Next} #{partenaireController.pagination.pageSize}" rendered="#{partenaireController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{partenaireController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_idp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_nom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_prenom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prenom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_telephone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telephone}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_datenai}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datenai}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_pass}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pass}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPartenaireTitle_idtp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{partenaireController.prepareView}" value="#{bundle.ListPartenaireViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{partenaireController.prepareEdit}" value="#{bundle.ListPartenaireEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{partenaireController.destroy}" value="#{bundle.ListPartenaireDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{partenaireController.prepareCreate}" value="#{bundle.ListPartenaireCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPartenaireIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

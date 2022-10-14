@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <ui:insert name="title"> </ui:insert>  
+          <!-- Basic Page Needs
+  ================================================== -->
+          <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+          <meta name="description" content="Construction Html5 Template"></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"></meta>
+          <meta name="author" content="Themefisher"></meta>
+          <meta name="generator" content="Themefisher Constra HTML Template v1.0"></meta>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="${facesContext.externalContext.requestContextPath}/images/favicon.png" ></link>
+
+    <!-- Themefisher Icon font -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/plugins/themefisher-font/style.css"></link>
+    <!-- bootstrap.min css -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/plugins/bootstrap/css/bootstrap.min.css"></link>
+
+    <!-- Animate css -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/plugins/animate/animate.css"></link>
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/plugins/slick/slick.css"></link>
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/plugins/slick/slick-theme.css"></link>
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/css/style.css"></link>
+
+    </h:head>
+
+    <h:body>
+    
+        <ui:include src="WEB-INF/include/header.xhtml"></ui:include>
+        
+        <ui:insert name="content"></ui:insert>
+        
+         <ui:include src="WEB-INF/include/footer.xhtml"></ui:include>
+        
+    </h:body>
+
+</html>

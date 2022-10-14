@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDetailslivraisonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDetailslivraisonEmpty}" rendered="#{detailslivraisonController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{detailslivraisonController.items.rowCount > 0}">
+                    <h:outputText value="#{detailslivraisonController.pagination.pageFirstItem + 1}..#{detailslivraisonController.pagination.pageLastItem + 1}/#{detailslivraisonController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{detailslivraisonController.previous}" value="#{bundle.Previous} #{detailslivraisonController.pagination.pageSize}" rendered="#{detailslivraisonController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{detailslivraisonController.next}" value="#{bundle.Next} #{detailslivraisonController.pagination.pageSize}" rendered="#{detailslivraisonController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{detailslivraisonController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailslivraisonTitle_iddl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iddl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailslivraisonTitle_iddv}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iddv}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDetailslivraisonTitle_idl}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idl}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{detailslivraisonController.prepareView}" value="#{bundle.ListDetailslivraisonViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detailslivraisonController.prepareEdit}" value="#{bundle.ListDetailslivraisonEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{detailslivraisonController.destroy}" value="#{bundle.ListDetailslivraisonDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{detailslivraisonController.prepareCreate}" value="#{bundle.ListDetailslivraisonCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDetailslivraisonIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

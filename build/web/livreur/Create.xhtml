@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLivreurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLivreurLabel_idli}" for="idli" />
+                    <h:inputText id="idli" value="#{livreurController.selected.idli}" title="#{bundle.CreateLivreurTitle_idli}" required="true" requiredMessage="#{bundle.CreateLivreurRequiredMessage_idli}"/>
+                    <h:outputLabel value="#{bundle.CreateLivreurLabel_idl}" for="idl" />
+                    <h:selectOneMenu id="idl" value="#{livreurController.selected.idl}" title="#{bundle.CreateLivreurTitle_idl}" >
+                        <f:selectItems value="#{livraisonController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateLivreurLabel_idp}" for="idp" />
+                    <h:selectOneMenu id="idp" value="#{livreurController.selected.idp}" title="#{bundle.CreateLivreurTitle_idp}" >
+                        <f:selectItems value="#{partenaireController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{livreurController.create}" value="#{bundle.CreateLivreurSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{livreurController.prepareList}" value="#{bundle.CreateLivreurShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLivreurIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMiseventeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMiseventeLabel_idmv}"/>
+                    <h:outputText value="#{miseventeController.selected.idmv}" title="#{bundle.ViewMiseventeTitle_idmv}"/>
+                    <h:outputText value="#{bundle.ViewMiseventeLabel_iddmv}"/>
+                    <h:outputText value="#{miseventeController.selected.iddmv}" title="#{bundle.ViewMiseventeTitle_iddmv}"/>
+                    <h:outputText value="#{bundle.ViewMiseventeLabel_datemv}"/>
+                    <h:outputText value="#{miseventeController.selected.datemv}" title="#{bundle.ViewMiseventeTitle_datemv}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMiseventeLabel_idp}"/>
+                    <h:outputText value="#{miseventeController.selected.idp}" title="#{bundle.ViewMiseventeTitle_idp}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{miseventeController.destroyAndView}" value="#{bundle.ViewMiseventeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMiseventeEditLink}"/>
+                <br />
+                <h:commandLink action="#{miseventeController.prepareCreate}" value="#{bundle.ViewMiseventeCreateLink}" />
+                <br />
+                <h:commandLink action="#{miseventeController.prepareList}" value="#{bundle.ViewMiseventeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMiseventeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDetailscommandeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDetailscommandeLabel_iddc}" for="iddc" />
+                    <h:inputText id="iddc" value="#{detailscommandeController.selected.iddc}" title="#{bundle.EditDetailscommandeTitle_iddc}" required="true" requiredMessage="#{bundle.EditDetailscommandeRequiredMessage_iddc}"/>
+                    <h:outputLabel value="#{bundle.EditDetailscommandeLabel_qtedc}" for="qtedc" />
+                    <h:inputText id="qtedc" value="#{detailscommandeController.selected.qtedc}" title="#{bundle.EditDetailscommandeTitle_qtedc}" />
+                    <h:outputLabel value="#{bundle.EditDetailscommandeLabel_idc}" for="idc" />
+                    <h:selectOneMenu id="idc" value="#{detailscommandeController.selected.idc}" title="#{bundle.EditDetailscommandeTitle_idc}" >
+                        <f:selectItems value="#{commandeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditDetailscommandeLabel_iddmv}" for="iddmv" />
+                    <h:selectOneMenu id="iddmv" value="#{detailscommandeController.selected.iddmv}" title="#{bundle.EditDetailscommandeTitle_iddmv}" >
+                        <f:selectItems value="#{detailsmiseventeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{detailscommandeController.update}" value="#{bundle.EditDetailscommandeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDetailscommandeViewLink}"/>
+                <br />
+                <h:commandLink action="#{detailscommandeController.prepareList}" value="#{bundle.EditDetailscommandeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDetailscommandeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
